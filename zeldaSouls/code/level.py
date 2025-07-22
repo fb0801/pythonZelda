@@ -21,7 +21,9 @@ class Level:
 
     def create_map(self): 
         layouts = {
-            'boundary': import_csv_layout('../map/map_FloorBlocks.csv')
+            'boundary': import_csv_layout('../map/map_FloorBlocks.csv'),
+            'grass': import_csv_layout('../map//map_Grass.csv'),
+            'object': import_csv_layout('../map/map_Objects.csv'),
         }
         for style, layout in layouts.items:
             for row_index, row in enumerate(layout):
@@ -31,6 +33,10 @@ class Level:
                         y = row_index * TILESIZE
                         if style == 'boundary':
                             Tile((x,y), [ self.obstacle_sprites], 'invisible')
+                        if style == 'grass':
+                            # create grass
+                        if style == 'object':
+                            #create object tile
                 '''if col == 'x':
                     Tile((x,y), [self.visible_sprites, self.obstacle_sprites])
                 if col == 'p':
