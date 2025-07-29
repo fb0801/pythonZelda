@@ -44,11 +44,8 @@ class Level:
                             random_grass_image = choice(graphics['grass'])
                             Tile((x,y), [self.visible_sprites, self.obstacle_sprites], 'grass', random_grass_image)
                         if style == 'object':
-                            #create object tile
-                '''if col == 'x':
-                    Tile((x,y), [self.visible_sprites, self.obstacle_sprites])
-                if col == 'p':
-                    self.player = Player((x,y), [self.visible_sprites], self.obstacle_sprites)'''
+                            surf = graphics['objects'][int(col)]
+                            Tile =((x,y), [self.visible_sprites,self.obstacle_sprites],'object', surf)
                                 
         self.player = Player((2000,1430), [self.visible_sprites], self.obstacle_sprites)
 
