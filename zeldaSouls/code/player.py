@@ -32,6 +32,11 @@ class Player(pygame.sprite.Sprite):
         self.weapon_switch_time = None
         self.switch_duration_cooldown  = 200
 
+#stats
+        self.stats = {'health':100, 'energy':60, 'attack':10, 'magic': 4, 'speed':6}
+        self.health = self.status['health']
+
+
         
 
     def import_player_assests(self):
