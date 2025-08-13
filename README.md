@@ -1,14 +1,18 @@
 # pythonZelda
 Zelda style game with dark souls elements built in Python
 
-# Changes made:
+## Changes made:
 
-# Issues:
+## Issues:
 
-# What we have learnt:
+## What we have learnt:
 
+- How to make a game using Pygame
+- using classes and objects to call functions and pass methods
 
-# Resources used:
+## Resources used:
+
+- python, Pygame
 
 https://www.youtube.com/watch?v=QU1pPzEGrqw
 
