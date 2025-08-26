@@ -12,6 +12,9 @@ class UI:
         self.health_bar_rect = pygame.Rect(10,10,HEALTH_BAR_WIDTH,BAR_HEIGHT)
         self.energy_bar_rect = pygame.Rect(10,34, ENERGY_BAR_WIDTH, BAR_HEIGHT)
 
+        # convert weapon dict
+        
+
     def show_bar(self, current, max_amount, bg_rect, color):
         # draw bg
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
@@ -36,7 +39,16 @@ class UI:
         self.display_surface.blit(text_surf, text_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20,20),3)
 
+    def selection_box(self, left,top):
+        bg_rect = pygame.Rect(left, top,ITEM_BOX_SIZE,ITEM_BOX_SIZE)
+        pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
+        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR,bg_rect,3)
+        return bg_rect
 
+    def weapon_index(self, weapon_index):
+        bg_rect = self.selection_box(10,630) #weapon
+
+        self.display_surface.blit(weapon_surf, weapon_rect)
 
     def display(self, player):
         self.show_bar(player.health, player.stats['health'], self.health_bar_rect, HEALTH_COLOR)
@@ -44,3 +56,6 @@ class UI:
 
 
         self.show_exp(player.exp)
+
+        self.weapon_overlay(player.weapon_index)
+        self.selection_box(80,635) #magic
