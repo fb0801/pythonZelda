@@ -19,8 +19,12 @@ class UI:
         # converting stat to pixel
         ratio = current / max_amount
         current_width = bg_rect.width * ratio
+        current_rect = bg_rect.copy()
+        current_rect.width = current_width
         
         # draw the bar
+        pygame.draw.rect(self.display_surface,color, current_rect)
+        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect,3)
 
 
 
