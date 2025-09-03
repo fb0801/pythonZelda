@@ -10,4 +10,6 @@ class Enemy(Entity):
         self.sprite_type = 'enemy'
 
         #graphic setup
-        
+        self.image = pygame.Surface((64,64))
+        self.rect = self.image.get_rect(topleft = pos)
+
