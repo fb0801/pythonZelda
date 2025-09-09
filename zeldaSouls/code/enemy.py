@@ -63,3 +63,6 @@ class Enemy(Entity):
 
     def update(self):
         self.move(self.speed)
+    
+    def enemy_update(self, player):
+        self.get_status(player)
