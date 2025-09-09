@@ -20,8 +20,24 @@ class Enemy(Entity):
         self.hitbox = self.rect.inflate(0, -10)
         self.obstacle_sprites = obstacle_sprites
 
+        #stats
+        self.monster_name = monster_name
+        monster_info = monster_data[self.monster_name]
+        self.health = monster_info['health']
+        self.exp = monster_info['exp']
+        self.speed = monster_info['speed']
+        self.attack_damage = monster_info['damage']
+        self.resistance = monster_info['resistance']
+        self.attack_radius = monster_info['attack_radius']
+        self.notice_radius = monster_info['notice_radius']
+        self.attack_type = monster_info['attack_type']
+
     def import_graphic(self, name):
         self.animations = {'idle':[], 'move':[], 'attack':[]}
         main_path = f'../graphics/monsters/{name}/'
         for animation in self.animations.keys():
             self.animations[animation] = import_folder(main_path + animation)
+
+
+    def update(self):
+        self.move(self.speed)
