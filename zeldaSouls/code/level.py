@@ -20,6 +20,8 @@ class Level:
 
         #attack sprite
         self.current_attack = None
+        self.attack_sprites = pygame.sprite.Group()
+        self.attackable_sprites = pygame.sprite.Group()
 
         #sprite setup
         self.create_map()
@@ -70,10 +72,13 @@ class Level:
                                 elif col == '391': monster_name = 'spirit'
                                 elif col == '392': monster_name = 'raccoon'
                                 else: monster_name = 'squid'
-                                Enemy(monster_name,(x,y), [self.visible_sprites], self.obstacle_sprites)
+                                Enemy(monster_name,
+                                      (x,y), 
+                                      [self.visible_sprites, self.attackable_sprites],
+                                       self.obstacle_sprites)
 
     def create_attack(self):
-        self.current_attack = Weapon(self.player, [self.visible_sprites])
+        self.current_attack = Weapon(self.player, [self.visible_sprites, self.attack_sprites])
 
     def create_magic(self, style, strength, cost):
         pass
