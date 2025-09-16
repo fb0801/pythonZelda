@@ -37,6 +37,11 @@ class Enemy(Entity):
         self.attack_time = None
         self.attack_cooldown = 400
 
+        #invince timer
+        self.vulnerable = True
+        self.hit_time = None
+        self.invincibility_duration = 300
+
     def import_graphic(self, name):
         self.animations = {'idle':[], 'move':[], 'attack':[]}
         main_path = f'../graphics/monsters/{name}/'
@@ -100,10 +105,15 @@ class Enemy(Entity):
         else:
             pass
 
+    def check_death(self):
+        if self.health <= 0:
+            self.kill()
+
     def update(self):
         self.move(self.speed)
         self.animate()
         self.attack_cooldown()
+        self.check_death()
     
     def enemy_update(self, player):
         self.get_status(player)
