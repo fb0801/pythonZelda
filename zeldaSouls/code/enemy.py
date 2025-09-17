@@ -94,7 +94,11 @@ class Enemy(Entity):
         self.rect = self.image.get_rect(center = self.hitbox.center)
 
         if not self.vulnerable:
-            
+            #flicker
+            alpha = 
+            self.image.set_alpha(alpha)
+        else:
+            self.image.set_alpa(255)
 
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
