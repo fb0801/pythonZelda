@@ -93,17 +93,25 @@ class Enemy(Entity):
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center)
 
-    def cooldown(self):
+    def cooldowns(self):
+        current_time = pygame.time.get_ticks()
         if not self.can_attack:
-            current_time = pygame.time.get_ticks()
             if current_time - self.attack_time >= self.attack_cooldown:
                 self.can_attack = True
+        
+        if not self.vulnerable:
+            if current_time - self.hit_time >= self.invincibility_duration:
+                self.vulnerable = True
+                
 
     def get_damage(self, player, attack_type):
-        if attack_type == 'weapon':
-            self.health -= player.get_full_weapon_damage()
-        else:
-            pass
+        if self.vulnerable:
+            if attack_type == 'weapon':
+                self.health -= player.get_full_weapon_damage()
+            else:
+                pass
+            self.hit_time = pygame.time.get_ticks()
+            self.vulnerable = False
 
     def check_death(self):
         if self.health <= 0:
@@ -112,7 +120,7 @@ class Enemy(Entity):
     def update(self):
         self.move(self.speed)
         self.animate()
-        self.attack_cooldown()
+        self.cooldowns()
         self.check_death()
     
     def enemy_update(self, player):
