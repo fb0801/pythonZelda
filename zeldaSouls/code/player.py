@@ -45,7 +45,10 @@ class Player(Entity):
         self.exp = 123
         self.speed = self.stats['speed']
 
-
+# damage timer
+        self.vulernable = True
+        self.hurt_time = None
+        self.invulnerability_duration = 500
         
 
     def import_player_assests(self):
