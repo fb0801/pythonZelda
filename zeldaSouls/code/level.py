@@ -103,8 +103,8 @@ class Level:
                 if collision_sprites:
                     for target_sprite in collision_sprites:
                         if target_sprite.sprite_type == 'grass':
-                            self.animation_player.create_grass_particles(pos, group)
                             pos = target_sprite.rect.center
+                            self.animation_player.create_grass_particles(pos, [self.visible_sprites])
                             target_sprite.kill()
                         else:
                             target_sprite.get_damage(self.player, attack_sprite.sprite_type)

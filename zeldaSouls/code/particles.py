@@ -47,6 +47,9 @@ class AnimationPlayer:
 	 		flipped_frame = pygame.transform.flip(frame,True,False)
 	 		new_frames.append(flipped_frame)
         return new_frames
+
+	def create_grass_particles(self,pos):
+        
      
                      
 
