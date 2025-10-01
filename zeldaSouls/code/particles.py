@@ -1,6 +1,6 @@
-import pygame 
+import pygame
 from support import import_folder
-
+from random import choice
 
 class AnimationPlayer:
 	def __init__(self):
@@ -45,10 +45,12 @@ class AnimationPlayer:
 
 		for frame in frames:
 	 		flipped_frame = pygame.transform.flip(frame,True,False)
-	 		new_frames.append(flipped_frame)
-        return new_frames
+            new_frames.append(flipped_frame)
+		return new_frames
 
-	def create_grass_particles(self,pos):
+	def create_grass_particles(self,pos,groups):
+	 	animation_frames = choice(self.frames['leaf'])
+	 	ParticleEffect(pos,animation_frames,groups)
         
      
                      
