@@ -211,8 +211,8 @@ class Player(Entity):
         return base_damage + weapon_damage
     
     def energy_recovery(self):
-        if self.energy <= self.stats['energy']: 
-            self.energy += 1
+        if self.energy < self.stats['energy']: 
+            self.energy += 0.01 * self.stats['magic']
         else:
             self.energy = self.stats['energy']
 
