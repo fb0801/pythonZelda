@@ -19,25 +19,25 @@ class MagicPlayer:
 
     def flame(self, player, cost, groups):
         if player.energy >= cost:
-            player.energy -= cost
+#            player.energy -= cost
 
-        if player.status.split('_')[0] == 'right':
-            direction = pygame.math.Vector2(1,0)
-        elif player.stats.split('_')[0] == 'left':
-            direction = pygame.math.Vector2(-1,0)
-        elif player.stats.split('_')[0] == 'up':
-            direction = pygame.math.Vector2(0,-1)
-        else:
-            direction = pygame.math.Vector2(0,1)
-
-        for i in range(1,6):
-            if direction.x:
-                offset_x = (direction.x * i) * TILESIZE
-                x = player.rect.center + offset_x + randint(-TILESIZE // 3, TILESIZE // 3)
-                y = player.rect.center + randint(-TILESIZE // 3, TILESIZE // 3)
-                self.animation_player.create_particles('flame',(x,y), groups)
+            if player.status.split('_')[0] == 'right':
+                direction = pygame.math.Vector2(1,0)
+            elif player.stats.split('_')[0] == 'left':
+                direction = pygame.math.Vector2(-1,0)
+            elif player.stats.split('_')[0] == 'up':
+                direction = pygame.math.Vector2(0,-1)
             else:
-                offset_y = (direction.y * i) * TILESIZE
-                x = player.rect.center + randint(-TILESIZE // 3, TILESIZE // 3)
-                y = player.rect.center + offset_y + randint(-TILESIZE // 3, TILESIZE // 3)
-                self.animation_player.create_particles('flame',(x,y), groups)
+                direction = pygame.math.Vector2(0,1)
+
+            for i in range(1,6):
+                if direction.x:
+                    offset_x = (direction.x * i) * TILESIZE
+                    x = player.rect.center + offset_x + randint(-TILESIZE // 3, TILESIZE // 3)
+                    y = player.rect.center + randint(-TILESIZE // 3, TILESIZE // 3)
+                    self.animation_player.create_particles('flame',(x,y), groups)
+                else:
+                    offset_y = (direction.y * i) * TILESIZE
+                    x = player.rect.center + randint(-TILESIZE // 3, TILESIZE // 3)
+                    y = player.rect.center + offset_y + randint(-TILESIZE // 3, TILESIZE // 3)
+                    self.animation_player.create_particles('flame',(x,y), groups)
