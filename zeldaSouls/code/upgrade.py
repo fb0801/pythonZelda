@@ -18,20 +18,26 @@ class Upgrade:
     def input(self):
         keys= pygame.key.get_pressed()
 
-        if keys[pygame.K_RIGHT] and self.can_move:
-            self.selection_index += 1
-            self.can_move = False
-            self.selection_time = pygame.time.get_ticks()
+        if self.can_move:
+            if keys[pygame.K_RIGHT] and self.selection_index < self.attribute_nr - 1:
+                self.selection_index += 1
+                self.can_move = False
+                self.selection_time = pygame.time.get_ticks()
 
-        elif keys[pygame.K_LEFT] and self.can_move:
-            self.selection_index -= 1
-            self.can_move = False
-            self.selection_time = pygame.time.get_ticks()
-        
-        if keys[pygame.K_SPACE]:
+            elif keys[pygame.K_LEFT] and self.selection_index >= 1:
+                self.selection_index -= 1
+                self.can_move = False
+                self.selection_time = pygame.time.get_ticks()
             
+            if keys[pygame.K_SPACE]:
+                pass
 
-
+    def selection_cooldown(self):
+        if not self.can_move:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.selection_index >= 300:
+                self.can_move = True
 
     def display(self):
-        self.display_surface.fill('black')
+        self.input()
+        self.selection_cooldown()
