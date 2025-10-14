@@ -30,7 +30,8 @@ class Upgrade:
                 self.selection_time = pygame.time.get_ticks()
             
             if keys[pygame.K_SPACE]:
-                pass
+                self.can_move = False
+                self.selection_time = pygame.time.get_ticks()
 
     def selection_cooldown(self):
         if not self.can_move:
