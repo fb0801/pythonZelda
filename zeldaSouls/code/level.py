@@ -10,6 +10,7 @@ from ui import UI
 from enemy import Enemy
 from particles import AnimationPlayer
 from magic import MagicPlayer
+from upgrade import Upgrade
 
 class Level:
     def __init__(self):
@@ -31,6 +32,7 @@ class Level:
 
         #user interface
         self.ui = UI()
+        self.upgrade = Upgrade(self.player)
 
         #particle
         self.animation_player = AnimationPlayer()
@@ -137,12 +139,21 @@ class Level:
         self.game_paused = not self.game_paused
 
     def run(self):
-        # update and draw the game
+         # update and draw the game
         self.visible_sprites.custom_draw()
-        self.visible_spritesx.update()
+       
+        self.ui.display(self.player)
+        
+        if self.game_paused:
+            #display update menu
+            self.upgrade.display()
+
+        else:
+             self.visible_spritesx.update()
         self.visible_sprites.enemy_update(self.player)
         self.player_attack_logic()
-        self.ui.display(self.player)
+
+       
 
 
 class YSortCameraGroup(pygame.sprite.Group):
