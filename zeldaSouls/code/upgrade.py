@@ -46,6 +46,20 @@ class Upgrade:
     def create_items(self):
         self.item_list = []
         
+        for item, index in enumerate(range(self.attribute_nr)):
+            # horiz pos
+            full_width = self.display_surface.get_size()[0]
+            increment = full_width // self.attribute_nr
+            left = (item * increment) + (increment - self.width) // 2
+
+            
+            #vert pos
+            top = self.display_surface.get_size()[1] * 0.1
+
+            #create obj
+            item = Item(left, top, self.width, self.height, index, self.font)
+            self.item_list.append(item)
+
 
     def display(self):
         self.input()
