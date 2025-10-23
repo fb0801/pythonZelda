@@ -8,6 +8,7 @@ class Upgrade:
         self.player = player
         self.attribute_nr = len(player.stats)
         self.attribute_names = list(player.stats.keys())
+        self.max_values = list(player.stats.values())
         self.font = pygame.font.Font(UI_FONT, UI_FONT_SIZE)
 
         #item creation
@@ -68,12 +69,12 @@ class Upgrade:
 
         for index,item in enumerate(self.item_list):
             # get attr
-            name = 
-            value = 
-            max_value = 
-            cost = 
+            name = self.attribute_names[index]
+            value = self.player.get_value_by_index(index)
+            max_value = self.max_values[index]
+            cost = self.player.get_cost_by_index(index)
 
-            item.display(self.display_surface, 0, 'test', 1, 2, 3)
+            item.display(self.display_surface, self.selection_index, 'test', 1, 2, 3)
 
 
 class Item:
