@@ -8,7 +8,7 @@ class Player(Entity):
         super().__init__(groups)
         self.image = pygame.image.load("../graphics/test/player.png").convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
-        self.hitbox = self.rect.inflate(0,-26)
+        self.hitbox = self.rect.inflate(-6, HITBOX_OFFSET['player'])
 
 #graphics setup
         self.import_player_assests()
@@ -236,5 +236,5 @@ class Player(Entity):
         self.cooldowns()
         self.get_status()
         self.animate()
-        self.move(self.speed)
+        self.move(self.stats['speed'])
         self.energy_recovery()
